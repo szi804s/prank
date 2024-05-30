@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Play YouTube Video</title>
+</head>
+<body>
+    <a id="youtube-link" href="https://www.youtube.com/watch?v=oNJo_mUMQgo" target="_blank">Play YouTube Video</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var link = document.getElementById('youtube-link');
+            link.click();
+
+            setTimeout(function() {
+                var iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = 'https://www.youtube.com/embed/oNJo_mUMQgo?autoplay=1&mute=0';
+                document.body.appendChild(iframe);
+            }, 1000);
+        });
+
+        // Funkcja do maksymalizacji głośności
+        function setMaxVolume() {
+            var video = document.querySelector('video');
+            if (video) {
+                video.volume = 1.0; // Maksymalna głośność
+            }
+        }
+
+        // Poczekaj, aż wideo się załaduje, a następnie ustaw głośność na maksymalną
+        window.addEventListener('load', function() {
+            setTimeout(setMaxVolume, 3000); // Czekaj 3 sekundy, aby upewnić się, że wideo się załadowało
+        });
+    </script>
+</body>
+</html>
